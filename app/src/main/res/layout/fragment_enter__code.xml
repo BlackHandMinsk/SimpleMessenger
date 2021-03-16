@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.EnterCodeFragment">
+
+    <ImageView
+        android:id="@+id/register_image"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_register_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <TextView
+        android:id="@+id/register_text_enter_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Введите код"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/register_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/register_text_we_sent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/register_text_enter_code"
+        android:text="Мы отправили вам смс с кодом проверки на ваш телефон"/>
+
+    <EditText
+        style="@style/editText"
+        android:id="@+id/register_input_phone_number"
+        android:autofillHints=""
+        android:maxLength="6"
+        android:gravity="center"
+        android:hint="------"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/register_text_we_sent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
