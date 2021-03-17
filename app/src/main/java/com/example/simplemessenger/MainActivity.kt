@@ -1,11 +1,15 @@
 package com.example.simplemessenger
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
+import com.example.simplemessenger.activities.RegisterActivity
 import com.example.simplemessenger.databinding.ActivityMainBinding
 import com.example.simplemessenger.ui.fragments.ChatsFragment
 import com.example.simplemessenger.ui.objects.AppDrawer
+import com.example.simplemessenger.utilits.replaceActivity
+import com.example.simplemessenger.utilits.replaceFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,14 +30,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunctions() {
-      //  setSupportActionBar(mToolbar)
-        mAppDrawer.create()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.dataContainer,
-                ChatsFragment()
-            ).commit()
-        mAppDrawer = AppDrawer(this,mToolbar)
-
+     if(true) {
+         mAppDrawer.create()
+         replaceFragment(ChatsFragment())
+         mAppDrawer = AppDrawer(this, mToolbar)
+     }else{
+         replaceActivity(RegisterActivity())
+     }
     }
 
     private fun initFields() {

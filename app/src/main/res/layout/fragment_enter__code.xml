@@ -41,7 +41,7 @@
 
     <EditText
         style="@style/editText"
-        android:id="@+id/register_input_phone_number"
+        android:id="@+id/register_input_code"
         android:autofillHints=""
         android:maxLength="6"
         android:gravity="center"

@@ -8,16 +8,7 @@ import android.view.ViewGroup
 import com.example.simplemessenger.R
 import com.example.simplemessenger.databinding.FragmentChatsBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ChatsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ChatsFragment : BaseFragment(R.layout.fragment_chats) {
 
     private lateinit var mBinding: FragmentChatsBinding
