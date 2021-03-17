@@ -8,13 +8,16 @@ import com.example.simplemessenger.activities.RegisterActivity
 import com.example.simplemessenger.databinding.ActivityMainBinding
 import com.example.simplemessenger.ui.fragments.ChatsFragment
 import com.example.simplemessenger.ui.objects.AppDrawer
+import com.example.simplemessenger.utilits.AUTH
 import com.example.simplemessenger.utilits.replaceActivity
 import com.example.simplemessenger.utilits.replaceFragment
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding
     private  lateinit var mToolbar: Toolbar
+
     private lateinit var mAppDrawer: AppDrawer
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunctions() {
-     if(true) {
+     if(AUTH.currentUser!=null) {
          mAppDrawer.create()
          replaceFragment(ChatsFragment())
          mAppDrawer = AppDrawer(this, mToolbar)
@@ -42,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     private fun initFields() {
        mToolbar = mBinding.mainToolBar
         mAppDrawer = AppDrawer(this,mToolbar)
+        AUTH = FirebaseAuth.getInstance()
 
     }
 }
