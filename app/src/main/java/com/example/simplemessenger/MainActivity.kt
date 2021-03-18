@@ -9,6 +9,7 @@ import com.example.simplemessenger.databinding.ActivityMainBinding
 import com.example.simplemessenger.ui.fragments.ChatsFragment
 import com.example.simplemessenger.ui.objects.AppDrawer
 import com.example.simplemessenger.utilits.AUTH
+import com.example.simplemessenger.utilits.initFirebase
 import com.example.simplemessenger.utilits.replaceActivity
 import com.example.simplemessenger.utilits.replaceFragment
 import com.google.firebase.auth.FirebaseAuth
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(mToolbar)
      if(AUTH.currentUser!=null) {
          mAppDrawer.create()
-         replaceFragment(ChatsFragment())
+         replaceFragment(ChatsFragment(),false)
          mAppDrawer = AppDrawer(this, mToolbar)
      }else{
          replaceActivity(RegisterActivity())
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     private fun initFields() {
        mToolbar = mBinding.mainToolBar
         mAppDrawer = AppDrawer(this,mToolbar)
-        AUTH = FirebaseAuth.getInstance()
+        initFirebase()
 
     }
 }

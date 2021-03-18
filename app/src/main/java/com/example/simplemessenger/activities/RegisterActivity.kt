@@ -6,6 +6,7 @@ import android.widget.Toolbar
 import com.example.simplemessenger.R
 import com.example.simplemessenger.databinding.ActivityRegisterBinding
 import com.example.simplemessenger.ui.fragments.EnterPhoneNumberFragment
+import com.example.simplemessenger.utilits.initFirebase
 import com.example.simplemessenger.utilits.replaceFragment
 
 class RegisterActivity : AppCompatActivity() {
@@ -17,6 +18,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        initFirebase()
     }
 
 
@@ -25,6 +27,6 @@ class RegisterActivity : AppCompatActivity() {
         mToolbar = mBinding.registerToolBar
 //       setSupportActionBar(mToolbar)
         title = "Ваш телефон"
-        replaceFragment(EnterPhoneNumberFragment())
+        replaceFragment(EnterPhoneNumberFragment(),false)
     }
 }
