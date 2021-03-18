@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunctions() {
+        setSupportActionBar(mToolbar)
      if(AUTH.currentUser!=null) {
          mAppDrawer.create()
          replaceFragment(ChatsFragment())
