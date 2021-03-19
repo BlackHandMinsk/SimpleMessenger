@@ -11,9 +11,11 @@ import com.example.simplemessenger.activities.RegisterActivity
 import com.example.simplemessenger.databinding.FragmentChatsBinding
 import com.example.simplemessenger.databinding.FragmentSettingsBinding
 import com.example.simplemessenger.utilits.AUTH
+import com.example.simplemessenger.utilits.USER
 import com.example.simplemessenger.utilits.replaceActivity
 import com.example.simplemessenger.utilits.replaceFragment
 import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     private lateinit var mBinding: FragmentSettingsBinding
@@ -21,6 +23,15 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     override fun onResume() {
         super.onResume()
         setHasOptionsMenu(true)
+        initFields()
+    }
+
+    private fun initFields() {
+        id_settings_bio.text = USER.bio
+        settings_full_name.text = USER.fullname
+        id_settings_phone_number.text = USER.phone
+        settings_status.text = USER.status
+        id_settings_user_name.text = USER.username
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
