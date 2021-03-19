@@ -12,6 +12,7 @@ import com.example.simplemessenger.databinding.FragmentChatsBinding
 import com.example.simplemessenger.databinding.FragmentSettingsBinding
 import com.example.simplemessenger.utilits.AUTH
 import com.example.simplemessenger.utilits.replaceActivity
+import com.example.simplemessenger.utilits.replaceFragment
 import kotlinx.android.synthetic.*
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
@@ -32,6 +33,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
                 AUTH.signOut()
                 (activity as MainActivity).replaceActivity(RegisterActivity())
             }
+            R.id.settings_menu_change_name->replaceFragment(ChangeNameFragment())
         }
         return true
     }
