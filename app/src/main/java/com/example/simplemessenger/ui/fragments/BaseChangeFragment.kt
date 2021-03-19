@@ -5,20 +5,22 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import com.example.simplemessenger.MainActivity
 import com.example.simplemessenger.R
+import com.example.simplemessenger.utilits.APP_ACTIVITY
 
 open class BaseChangeFragment(layout:Int) : Fragment(layout) {
     override fun onStart() {
         super.onStart()
         setHasOptionsMenu(true)
-        (activity as MainActivity).mAppDrawer.disableDrawer()
+        (APP_ACTIVITY).mAppDrawer.disableDrawer()
     }
 
     override fun onStop() {
         super.onStop()
+        APP_ACTIVITY.hideKeybord()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        (activity as MainActivity).menuInflater.inflate(R.menu.settings_menu_confirm,menu)
+      APP_ACTIVITY.menuInflater.inflate(R.menu.settings_menu_confirm,menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

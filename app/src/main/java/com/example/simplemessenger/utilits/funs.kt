@@ -9,8 +9,8 @@ import com.example.simplemessenger.activities.RegisterActivity
 import com.example.simplemessenger.ui.fragments.ChatsFragment
 import com.example.simplemessenger.ui.objects.AppDrawer
 
-fun Fragment.showToast(message:String){
-    Toast.makeText(this.context,message,Toast.LENGTH_SHORT).show()
+fun showToast(message:String){
+    Toast.makeText(APP_ACTIVITY,message,Toast.LENGTH_SHORT).show()
 }
 
 fun AppCompatActivity.replaceActivity(activity: AppCompatActivity){

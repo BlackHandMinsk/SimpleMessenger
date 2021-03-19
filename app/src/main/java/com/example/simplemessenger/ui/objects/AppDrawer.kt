@@ -38,6 +38,7 @@ class AppDrawer(val mainActivity: AppCompatActivity,val toolbar: Toolbar){
     }
 
     fun enableDrawer() {
+        create()
         mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = true
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
