@@ -6,17 +6,18 @@ import androidx.fragment.app.Fragment
 import com.example.simplemessenger.MainActivity
 import com.example.simplemessenger.R
 import com.example.simplemessenger.utilits.APP_ACTIVITY
+import com.example.simplemessenger.utilits.hideKeybord
 
 open class BaseChangeFragment(layout:Int) : Fragment(layout) {
     override fun onStart() {
         super.onStart()
         setHasOptionsMenu(true)
         (APP_ACTIVITY).mAppDrawer.disableDrawer()
+        hideKeybord()
     }
 
     override fun onStop() {
         super.onStop()
-        APP_ACTIVITY.hideKeybord()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
