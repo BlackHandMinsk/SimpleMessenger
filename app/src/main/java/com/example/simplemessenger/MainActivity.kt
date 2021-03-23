@@ -63,9 +63,21 @@ class MainActivity : AppCompatActivity() {
         if(requestCode== CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE&&resultCode== Activity.RESULT_OK &&data!=null){
             val uri = CropImage.getActivityResult(data).uri
             val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE).child(CURRENT_UID)
-            path.putFile(uri).addOnCompleteListener{
-                if(it.isSuccessful){
-                    showToast("данные обновлены")
+            path.putFile(uri).addOnCompleteListener{task1->
+                if(task1.isSuccessful){
+                    path.downloadUrl.addOnCompleteListener{task2->
+                        if(task2.isSuccessful){
+                            val photoUrl = task2.result.toString()
+                            REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID)
+                                    .child(CHILD_PHOTO_URL).setValue(photoUrl)
+                                    .addOnCompleteListener{
+                                        if(it.isSuccessful){
+                                            showToast("Все обновилось")
+                                            USER.photoUrl = photoUrl
+                                        }
+                                    }
+                        }
+                    }
                 }
             }
         }
