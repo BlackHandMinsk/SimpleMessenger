@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.simplemessenger.R
 import com.example.simplemessenger.databinding.FragmentChatsBinding
+import com.example.simplemessenger.utilits.APP_ACTIVITY
 
 
 class ChatsFragment : Fragment(R.layout.fragment_chats) {
@@ -15,4 +16,13 @@ class ChatsFragment : Fragment(R.layout.fragment_chats) {
         super.onResume()
 
     }
+//override fun onStart() {
+//    super.onStart()
+//    APP_ACTIVITY.mAppDrawer.disableDrawer()
+//}
+//
+//    override fun onStop() {
+//        super.onStop()
+//        APP_ACTIVITY.mAppDrawer.enableDrawer()
+//    }
 }
