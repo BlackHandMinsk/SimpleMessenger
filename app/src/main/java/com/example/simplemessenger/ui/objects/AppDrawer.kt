@@ -138,13 +138,17 @@ class AppDrawer(val mainActivity: AppCompatActivity,val toolbar: Toolbar){
     }
 
     private fun createHeader() {
+        mCurrentProfile = ProfileDrawerItem()
+                .withName(USER.fullname)
+                .withEmail(USER.phone)
+                .withIcon(USER.photoUrl)
+                .withIdentifier(200)
         mHeader = AccountHeaderBuilder()
-            .withActivity(mainActivity)
-            .withHeaderBackground(R.drawable.header)
-            .addProfiles(
-                ProfileDrawerItem().withName("Костя Иванов")
-                    .withEmail("+34345453")
-            ).build()
+                .withActivity(mainActivity)
+                .withHeaderBackground(R.drawable.header)
+                .addProfiles(
+                        mCurrentProfile
+                ).build()
 
     }
 
