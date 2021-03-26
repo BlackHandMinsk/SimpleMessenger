@@ -1,7 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 
-    <style name="AppThemeDark" parent="MaterialDrawerTheme">
-        ///to do
-        </style>
+<!--    <style name="AppThemeDark" parent="MaterialDrawerTheme">-->
+<!--        ///to do-->
+<!--        </style>-->
+
+<!--    <style name="AppThemeLight" parent="MaterialDrawerTheme">-->
+<!--     <item name=-->
+<!--    </style>-->
 </resources>
