@@ -47,4 +47,5 @@
     <color name="material_drawer_dark_header_selection_text">#FFFFFFFF</color>
     <color name="material_drawer_dark_header_selection_subtext">#B3FFFFFF</color>
     <color name="colorGrey">#808080</color>
+    <color name="colorGreen">#4CAF50</color>
 </resources>
