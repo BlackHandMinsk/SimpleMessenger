@@ -12,8 +12,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:src="@drawable/default_photo"
-        app:civ_circle_background_color="@color/colorAccent"
-        android:layout_marginStart="10dp"/>
+        app:civ_circle_background_color="@color/colorAccent" />
 
     <TextView
         android:id="@+id/contact_fullname"

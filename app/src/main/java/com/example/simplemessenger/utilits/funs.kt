@@ -8,12 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.simplemessenger.R
-import com.example.simplemessenger.activities.RegisterActivity
-import com.example.simplemessenger.ui.fragments.ChatsFragment
-import com.example.simplemessenger.ui.objects.AppDrawer
 import com.squareup.picasso.Picasso
-import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.fragment_settings.*
 
 fun showToast(message:String){
     Toast.makeText(APP_ACTIVITY,message,Toast.LENGTH_SHORT).show()
@@ -29,17 +24,17 @@ fun AppCompatActivity.replaceFragment(fragment: Fragment,addStack:Boolean=true){
     if(addStack){
     supportFragmentManager.beginTransaction()
             .addToBackStack(null)
-            .replace(R.id.dataContainer, fragment).commit()
+            .replace(R.id.data_container, fragment).commit()
 }else {
         supportFragmentManager.beginTransaction()
-                .replace(R.id.dataContainer, fragment).commit()
+                .replace(R.id.data_container, fragment).commit()
     }
     }
 
 fun Fragment.replaceFragment(fragment: Fragment){
     this.fragmentManager?.beginTransaction()
             ?.addToBackStack(null)
-            ?.replace(R.id.dataContainer, fragment)?.commit()
+            ?.replace(R.id.data_container, fragment)?.commit()
 }
 
 

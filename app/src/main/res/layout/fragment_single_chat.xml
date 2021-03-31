@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.SingleChatFragment">
+
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/chat_recycle_view"
     android:layout_width="match_parent"
@@ -13,8 +14,10 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="parent"
     app:layout_constraintBottom_toTopOf="@+id/chat_input_message"
-    tools:listitem=""
+    tools:listitem="@layout/message_item"
+    android:background="@color/colorPrimary"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
     <EditText
         android:id="@+id/chat_input_message"
         android:layout_width="0dp"
@@ -24,10 +27,12 @@
         android:textColorHint="@color/colorGrey"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf = "parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"/>
 
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageView"
         android:layout_width="50dp"
         android:layout_height="0dp"
         android:src="@drawable/ic_baseline_send"
