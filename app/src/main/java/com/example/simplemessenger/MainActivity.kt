@@ -48,14 +48,13 @@ class MainActivity : AppCompatActivity() {
          setSupportActionBar(mToolbar)
          mAppDrawer.create()
          replaceFragment(ChatsFragment(),false)
-         mAppDrawer = AppDrawer()
      }else{
          replaceActivity(RegisterActivity())
      }
     }
 
     private fun initFields() {
-       mToolbar = mBinding.mainToolBar
+       mToolbar = mBinding.mainToolbar
         mAppDrawer = AppDrawer()
 
             }

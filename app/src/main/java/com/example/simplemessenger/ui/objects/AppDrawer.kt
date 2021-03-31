@@ -25,7 +25,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader
 import com.mikepenz.materialdrawer.util.DrawerImageLoader
 
-class AppDrawer(){
+class AppDrawer{
     private lateinit var mDrawer: Drawer
     private  lateinit var mHeader: AccountHeader
     private lateinit var  mDrawerLayout: DrawerLayout
@@ -39,7 +39,6 @@ class AppDrawer(){
     }
 
     fun disableDrawer(){
-        create()
         mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = false
         APP_ACTIVITY.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
@@ -54,7 +53,6 @@ class AppDrawer(){
                 .withEmail(USER.phone)
                 .withIcon(USER.photoUrl)
                 .withIdentifier(200)
-        create()
         APP_ACTIVITY.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = true
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
