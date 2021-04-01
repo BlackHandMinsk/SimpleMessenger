@@ -16,13 +16,4 @@ class ChatsFragment : Fragment(R.layout.fragment_chats) {
         super.onResume()
 APP_ACTIVITY.title = "Chats"
     }
-//override fun onStart() {
-//    super.onStart()
-//    APP_ACTIVITY.mAppDrawer.disableDrawer()
-//}
-//
-//    override fun onStop() {
-//        super.onStop()
-//        APP_ACTIVITY.mAppDrawer.enableDrawer()
-//    }
 }

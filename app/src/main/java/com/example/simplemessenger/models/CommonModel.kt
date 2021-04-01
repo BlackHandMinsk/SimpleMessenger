@@ -10,8 +10,8 @@ data class CommonModel (
     var photoUrl:String = "empty",
 
 
-var text:String = "",
-var type:String = "",
-var from:String = "",
-    var timeStamp:String = ""
+    var text:String = "",
+    var type:String = "",
+    var from:String = "",
+    var timeStamp:Any = ""
 )

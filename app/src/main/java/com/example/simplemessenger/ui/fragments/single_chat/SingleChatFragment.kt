@@ -1,9 +1,11 @@
-package com.example.simplemessenger.ui.fragments
+package com.example.simplemessenger.ui.fragments.single_chat
 
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import com.example.simplemessenger.R
 import com.example.simplemessenger.models.CommonModel
 import com.example.simplemessenger.models.UserModel
+import com.example.simplemessenger.ui.fragments.BaseFragment
 import com.example.simplemessenger.utilits.*
 import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.activity_main.view.*
@@ -17,10 +19,32 @@ class SingleChatFragment(private val contact: CommonModel) : BaseFragment(R.layo
     private lateinit var  mReceivingUser:UserModel
     private lateinit var mToolBarInfo:View
     private lateinit var mRefUser:DatabaseReference
+    private lateinit var mRefMessages:DatabaseReference
+    private lateinit var mAdapter: SingleChatAdapter
+    private lateinit var mRecyclerView: RecyclerView
+    private lateinit var mMessagesListener: AppValueEventListener
+    var mListMessages = emptyList<CommonModel>()
 
     override fun onResume() {
         super.onResume()
-        mToolBarInfo =   APP_ACTIVITY.mToolbar.toolbar_info
+        initToolbar()
+        initRecycleView()
+    }
+
+    private fun initRecycleView() {
+        mRecyclerView = chat_recycle_view
+        mAdapter = SingleChatAdapter()
+        mRefMessages = REF_DATABASE_ROOT.child(NODE_MESSAGES).child(CURRENT_UID).child(contact.id)
+        mRecyclerView.adapter = mAdapter
+        mMessagesListener = AppValueEventListener { dataSnapshot->
+            mListMessages = dataSnapshot.children.map { it.getCommonModel() }
+            mAdapter.setList(mListMessages)
+        }
+        mRefMessages.addValueEventListener(mMessagesListener)
+    }
+
+    private fun initToolbar() {
+        mToolBarInfo = APP_ACTIVITY.mToolbar.toolbar_info
         mToolBarInfo.visibility = View.VISIBLE
         mListenerInfoToolbar = AppValueEventListener {
             mReceivingUser = it.getUserModel()
@@ -29,16 +53,15 @@ class SingleChatFragment(private val contact: CommonModel) : BaseFragment(R.layo
 
         mRefUser = REF_DATABASE_ROOT.child(NODE_USERS).child(contact.id)
         mRefUser.addValueEventListener(mListenerInfoToolbar)
-        chat_btn_sent_message.setOnClickListener{
+        chat_btn_sent_message.setOnClickListener {
             val message = chat_input_message.text.toString()
-            if(message.isEmpty()){
+            if (message.isEmpty()) {
                 showToast("Введите сообщение")
-            }else sendMessage(message,contact.id, TYPE_TEXT){
+            } else sendMessage(message, contact.id, TYPE_TEXT) {
                 chat_input_message.setText("")
             }
         }
     }
-
 
 
     private fun initInfoToolbar() {
@@ -54,5 +77,6 @@ class SingleChatFragment(private val contact: CommonModel) : BaseFragment(R.layo
         super.onPause()
         mToolBarInfo.visibility = View.GONE
         mRefUser.removeEventListener(mListenerInfoToolbar)
+        mRefMessages.removeEventListener(mMessagesListener)
     }
 }
