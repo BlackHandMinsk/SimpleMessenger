@@ -1,13 +1,9 @@
-package com.example.simplemessenger.ui.fragments
+package com.example.simplemessenger.ui.fragments.register
 
 import androidx.fragment.app.Fragment
-import com.example.simplemessenger.MainActivity
 import com.example.simplemessenger.R
-import com.example.simplemessenger.activities.RegisterActivity
-import com.example.simplemessenger.utilits.AUTH
-import com.example.simplemessenger.utilits.replaceActivity
-import com.example.simplemessenger.utilits.replaceFragment
-import com.example.simplemessenger.utilits.showToast
+import com.example.simplemessenger.database.AUTH
+import com.example.simplemessenger.utilits.*
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
@@ -31,7 +27,7 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
                 AUTH.signInWithCredential(credential).addOnCompleteListener{
                     if(it.isSuccessful){
                         showToast("Добро пожаловать")
-                        (activity as RegisterActivity).replaceActivity(MainActivity())
+                       restartActivity()
                     }else showToast(it.exception?.message.toString())
                 }
             }
@@ -41,7 +37,7 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
             }
 
             override fun onCodeSent(id: String, token: PhoneAuthProvider.ForceResendingToken) {
-              replaceFragment(EnterCodeFragment(mPhoneNumber,id))
+              replaceFragment(EnterCodeFragment(mPhoneNumber, id))
             }
         }
       register_btn_next.setOnClickListener{sendCode()}
@@ -58,7 +54,7 @@ if(register_input_phone_number.text.toString().isEmpty()){
     private fun authUser() {
         mPhoneNumber = register_input_phone_number.text.toString()
         PhoneAuthProvider.verifyPhoneNumber(PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
-            .setActivity(activity as RegisterActivity)
+            .setActivity(APP_ACTIVITY)
             .setPhoneNumber(mPhoneNumber)
             .setTimeout(60,TimeUnit.SECONDS)
             .setCallbacks(mCallback)

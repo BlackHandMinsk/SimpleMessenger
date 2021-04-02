@@ -1,11 +1,10 @@
-package com.example.simplemessenger.ui.fragments
+package com.example.simplemessenger.ui.fragments.register
 
 import androidx.fragment.app.Fragment
-import com.example.simplemessenger.MainActivity
 import com.example.simplemessenger.R
-import com.example.simplemessenger.activities.RegisterActivity
+import com.example.simplemessenger.database.*
+
 import com.example.simplemessenger.utilits.*
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.fragment_enter__code.*
 
@@ -14,7 +13,7 @@ class EnterCodeFragment(val phoneNumber: String,val id: String) : Fragment(R.lay
 
     override fun onStart() {
         super.onStart()
-        (activity as RegisterActivity).title = phoneNumber
+       APP_ACTIVITY.title = phoneNumber
         register_input_code.addTextChangedListener(AppTextWatcher {
             val string = register_input_code.text.toString()
             if (string.length == 6) {
@@ -39,7 +38,7 @@ class EnterCodeFragment(val phoneNumber: String,val id: String) : Fragment(R.lay
                         .addOnSuccessListener { REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap)
                                 .addOnSuccessListener {
                                     showToast("Добро пожаловать")
-                                    (activity as RegisterActivity).replaceActivity(MainActivity())
+                                 restartActivity()
                         }
                         .addOnFailureListener{ showToast(it.message.toString())}
             }

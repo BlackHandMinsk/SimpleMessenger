@@ -1,18 +1,13 @@
 package com.example.simplemessenger.ui.fragments
 
 import android.app.Activity
-import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.net.Uri
 import android.view.*
-import com.example.simplemessenger.MainActivity
 import com.example.simplemessenger.R
-import com.example.simplemessenger.activities.RegisterActivity
+import com.example.simplemessenger.database.*
+
 import com.example.simplemessenger.databinding.FragmentSettingsBinding
 import com.example.simplemessenger.utilits.*
-import com.google.firebase.storage.StorageReference
-import com.mikepenz.materialdrawer.icons.MaterialDrawerFont.url
-import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -56,7 +51,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             R.id.settings_menu_exit->{
                 AppStates.updateState(AppStates.OFFLINE)
                 AUTH.signOut()
-              APP_ACTIVITY.replaceActivity(RegisterActivity())
+               restartActivity()
             }
             R.id.settings_menu_change_name->replaceFragment(ChangeNameFragment())
         }
@@ -68,12 +63,12 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         if(requestCode== CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE&&resultCode== Activity.RESULT_OK &&data!=null){
             val uri = CropImage.getActivityResult(data).uri
             val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE).child(CURRENT_UID)
-            putImageToStorage(uri,path){
-                getUrlFromStorage(path){
-                    putUrlToDatabase(it){
+            putImageToStorage(uri, path) {
+                getUrlFromStorage(path) {
+                    putUrlToDatabase(it) {
                         settings_user_photo.downloadAndSetImage(it)
-                                            showToast("Все обновилось")
-                                            USER.photoUrl = it
+                        showToast("Все обновилось")
+                        USER.photoUrl = it
                         APP_ACTIVITY.mAppDrawer.updateHeader()
                     }
                 }

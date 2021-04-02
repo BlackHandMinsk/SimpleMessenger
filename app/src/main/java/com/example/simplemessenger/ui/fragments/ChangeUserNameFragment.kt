@@ -1,6 +1,7 @@
 package com.example.simplemessenger.ui.fragments
 
 import com.example.simplemessenger.R
+import com.example.simplemessenger.database.*
 import com.example.simplemessenger.utilits.*
 import kotlinx.android.synthetic.main.fragment_change_user_name.*
 import java.util.*
@@ -34,32 +35,8 @@ class ChangeUserNameFragment : BaseChangeFragment(R.layout.fragment_change_user_
     private fun changeUserName() {
         REF_DATABASE_ROOT.child(NODE_USERNAMES).child(mNewUserName).setValue(CURRENT_UID).addOnCompleteListener() {
             if (it.isSuccessful){
-                updateCurrentUserName()
+                updateCurrentUserName(mNewUserName)
             }
         }
-    }
-
-    private fun updateCurrentUserName() {
-        REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_USERNAME).setValue(mNewUserName).addOnCompleteListener{
-            if(it.isSuccessful){
-                showToast("Все ок")
-                deleteOldUsername()
-            }else{
-                showToast(it.exception?.message.toString())
-            }
-        }
-    }
-
-    private fun deleteOldUsername() {
-        REF_DATABASE_ROOT.child(NODE_USERNAMES).child(USER.username).removeValue()
-            .addOnCompleteListener{
-                if(it.isSuccessful){
-                    showToast("Все ок")
-                    fragmentManager?.popBackStack()
-                    USER.username = mNewUserName
-                }else{
-                    showToast(it.exception?.message.toString())
-                }
-            }
     }
 }

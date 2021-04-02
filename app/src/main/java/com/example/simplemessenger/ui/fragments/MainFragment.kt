@@ -10,10 +10,11 @@ import com.example.simplemessenger.databinding.FragmentChatsBinding
 import com.example.simplemessenger.utilits.APP_ACTIVITY
 
 
-class ChatsFragment : Fragment(R.layout.fragment_chats) {
+class MainFragment : Fragment(R.layout.fragment_chats) {
 
     override fun onResume() {
         super.onResume()
-APP_ACTIVITY.title = "Chats"
+        APP_ACTIVITY.title = "Simple messenger"
+        APP_ACTIVITY.mAppDrawer.enableDrawer()
     }
 }

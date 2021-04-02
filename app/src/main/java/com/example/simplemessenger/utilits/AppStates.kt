@@ -1,5 +1,7 @@
 package com.example.simplemessenger.utilits
 
+import com.example.simplemessenger.database.*
+
 enum class AppStates(val state:String) {
     ONLINE("В сети"),
     OFFLINE("Был недавно"),

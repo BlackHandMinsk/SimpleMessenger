@@ -1,9 +1,11 @@
-package com.example.simplemessenger.utilits
+package com.example.simplemessenger.database
 
 import android.net.Uri
-import android.provider.ContactsContract
 import com.example.simplemessenger.models.CommonModel
 import com.example.simplemessenger.models.UserModel
+import com.example.simplemessenger.utilits.APP_ACTIVITY
+import com.example.simplemessenger.utilits.AppValueEventListener
+import com.example.simplemessenger.utilits.showToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
@@ -61,27 +63,28 @@ inline fun putUrlToDatabase(it: String,crossinline function: () -> Unit) {
     REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID)
         .child(CHILD_PHOTO_URL).setValue(MaterialDrawerFont.url)
         .addOnSuccessListener { function() }
-        .addOnFailureListener{ showToast(it.message.toString())}
+        .addOnFailureListener{ showToast(it.message.toString()) }
 }
 
  inline fun getUrlFromStorage(path: StorageReference, crossinline function: (url:String) -> Unit) {
     path.downloadUrl
         .addOnSuccessListener { function(it.toString()) }
-        .addOnFailureListener{ showToast(it.message.toString())}
+        .addOnFailureListener{ showToast(it.message.toString()) }
 }
 
  inline fun putImageToStorage(uri: Uri, path: StorageReference, crossinline function: () -> Unit) {
     path.putFile(uri)
         .addOnSuccessListener { function() }
-        .addOnFailureListener{ showToast(it.message.toString())}
+        .addOnFailureListener{ showToast(it.message.toString()) }
 }
 
 inline fun initUser(crossinline function: () -> Unit) {
-    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).addListenerForSingleValueEvent(AppValueEventListener{
-        USER = it.getValue(UserModel::class.java)?:UserModel()
-                if(USER.username.isEmpty()){
-                    USER.username = CURRENT_UID
-                }
+    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).addListenerForSingleValueEvent(AppValueEventListener {
+        USER = it.getValue(UserModel::class.java)
+                ?: UserModel()
+        if (USER.username.isEmpty()) {
+            USER.username = CURRENT_UID
+        }
         function()
     })
 }
@@ -134,5 +137,42 @@ val refDialogReceivingUser = "$NODE_MESSAGES/$receivingUserId/$CURRENT_UID"
      REF_DATABASE_ROOT
              .updateChildren(mapDialog)
              .addOnSuccessListener { function() }
-             .addOnFailureListener{ showToast(it.message.toString())}
+             .addOnFailureListener{ showToast(it.message.toString()) }
+}
+
+ fun updateCurrentUserName(newUserName:String) {
+    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_USERNAME).setValue(newUserName).addOnCompleteListener{
+        if(it.isSuccessful){
+            showToast("Все ок")
+            deleteOldUsername(newUserName)
+        }else{
+            showToast(it.exception?.message.toString())
+        }
+    }
+}
+
+private fun deleteOldUsername(newUserName:String) {
+    REF_DATABASE_ROOT.child(NODE_USERNAMES).child(USER.username).removeValue()
+            .addOnSuccessListener{
+                    showToast("Все ок")
+                   APP_ACTIVITY.supportFragmentManager.popBackStack()
+                    USER.username = newUserName
+            }.addOnFailureListener{ showToast(it.message.toString())}
+}
+
+fun setBioToDatabase(newBio: String) {
+    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_BIO).setValue(newBio).addOnSuccessListener{
+            showToast("Все ок")
+            USER.bio = newBio
+           APP_ACTIVITY.supportFragmentManager.popBackStack()
+    }.addOnFailureListener{ showToast(it.message.toString())}
+}
+
+fun setNameToDatabase(fullname: String) {
+    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_FULLNAME).setValue(fullname).addOnSuccessListener{
+            showToast("Данные обновлены")
+            USER.fullname = fullname
+            APP_ACTIVITY.mAppDrawer.updateHeader()
+            APP_ACTIVITY.supportFragmentManager.popBackStack()
+    }.addOnFailureListener{ showToast(it.message.toString())}
 }

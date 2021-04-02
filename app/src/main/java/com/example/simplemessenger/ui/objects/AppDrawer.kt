@@ -4,14 +4,12 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.simplemessenger.R
 import com.example.simplemessenger.ui.fragments.ContactsFragment
 import com.example.simplemessenger.ui.fragments.SettingsFragment
 import com.example.simplemessenger.utilits.APP_ACTIVITY
-import com.example.simplemessenger.utilits.USER
+import com.example.simplemessenger.database.USER
 import com.example.simplemessenger.utilits.downloadAndSetImage
 import com.example.simplemessenger.utilits.replaceFragment
 import com.mikepenz.materialdrawer.AccountHeader
@@ -137,8 +135,8 @@ class AppDrawer{
 
     private fun clickToItem(position:Int){
         when(position){
-            7-> APP_ACTIVITY.replaceFragment(SettingsFragment())
-            4-> APP_ACTIVITY.replaceFragment(ContactsFragment())
+            7-> replaceFragment(SettingsFragment())
+            4-> replaceFragment(ContactsFragment())
         }
 
     }

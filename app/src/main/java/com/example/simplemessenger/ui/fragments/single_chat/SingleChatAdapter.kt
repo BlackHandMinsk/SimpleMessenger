@@ -8,11 +8,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplemessenger.R
 import com.example.simplemessenger.models.CommonModel
-import com.example.simplemessenger.utilits.CURRENT_UID
+import com.example.simplemessenger.database.CURRENT_UID
 import com.example.simplemessenger.utilits.asTime
 import kotlinx.android.synthetic.main.message_item.view.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 class SingleChatAdapter: RecyclerView.Adapter<SingleChatAdapter.SingleChatHolder>() {
 

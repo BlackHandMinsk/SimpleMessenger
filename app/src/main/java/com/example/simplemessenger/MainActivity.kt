@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import com.example.simplemessenger.activities.RegisterActivity
+import com.example.simplemessenger.database.AUTH
+import com.example.simplemessenger.database.initFirebase
+import com.example.simplemessenger.database.initUser
+
 import com.example.simplemessenger.databinding.ActivityMainBinding
-import com.example.simplemessenger.ui.fragments.ChatsFragment
+import com.example.simplemessenger.ui.fragments.MainFragment
+import com.example.simplemessenger.ui.fragments.register.EnterPhoneNumberFragment
 import com.example.simplemessenger.ui.objects.AppDrawer
 import com.example.simplemessenger.utilits.*
 import kotlinx.coroutines.CoroutineScope
@@ -26,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(mBinding.root)
         APP_ACTIVITY =this
         initFirebase()
-        initUser{
+        initUser {
             CoroutineScope(Dispatchers.IO).launch {
                 initContacts()
             }
@@ -38,12 +42,12 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun initFunctions() {
+        setSupportActionBar(mToolbar)
      if(AUTH.currentUser!=null) {
-         setSupportActionBar(mToolbar)
          mAppDrawer.create()
-         replaceFragment(ChatsFragment(),false)
+         replaceFragment(MainFragment(),false)
      }else{
-         replaceActivity(RegisterActivity())
+        replaceFragment(EnterPhoneNumberFragment(),false)
      }
     }
 

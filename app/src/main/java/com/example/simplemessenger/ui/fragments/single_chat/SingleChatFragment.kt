@@ -3,6 +3,7 @@ package com.example.simplemessenger.ui.fragments.single_chat
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplemessenger.R
+import com.example.simplemessenger.database.*
 import com.example.simplemessenger.models.CommonModel
 import com.example.simplemessenger.models.UserModel
 import com.example.simplemessenger.ui.fragments.BaseFragment
