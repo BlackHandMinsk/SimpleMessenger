@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.example.simplemessenger.R
 import com.example.simplemessenger.databinding.FragmentChatsBinding
 import com.example.simplemessenger.utilits.APP_ACTIVITY
+import com.example.simplemessenger.utilits.hideKeybord
 
 
 class MainFragment : Fragment(R.layout.fragment_chats) {
@@ -16,5 +17,6 @@ class MainFragment : Fragment(R.layout.fragment_chats) {
         super.onResume()
         APP_ACTIVITY.title = "Simple messenger"
         APP_ACTIVITY.mAppDrawer.enableDrawer()
+        hideKeybord()
     }
 }
