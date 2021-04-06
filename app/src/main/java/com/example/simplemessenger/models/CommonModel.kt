@@ -8,6 +8,7 @@ data class CommonModel (
     var state:String = "",
     var phone:String = "",
     var photoUrl:String = "empty",
+    var imageUrl:String = "empty",
 
 
     var text:String = "",

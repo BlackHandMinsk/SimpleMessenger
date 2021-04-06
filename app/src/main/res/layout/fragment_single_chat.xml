@@ -45,6 +45,19 @@
         android:src="@drawable/ic_send"
         android:background="@color/colorPrimary"
         android:padding="5dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/chat_input_message"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/chat_btn_attach"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_attach"
+        android:background="@color/colorPrimary"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf = "parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/chat_input_message"
