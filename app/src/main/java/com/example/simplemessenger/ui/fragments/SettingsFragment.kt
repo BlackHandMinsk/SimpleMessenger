@@ -18,7 +18,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     override fun onResume() {
         super.onResume()
         setHasOptionsMenu(true)
-        initFields()
+         initFields()
     }
 
     private fun initFields() {
