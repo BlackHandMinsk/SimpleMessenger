@@ -13,6 +13,7 @@ import com.google.firebase.database.ServerValue
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.mikepenz.materialdrawer.icons.MaterialDrawerFont
+import java.io.File
 
 fun initFirebase(){
     AUTH = FirebaseAuth.getInstance()
@@ -167,4 +168,9 @@ fun uploadFileToStorage(uri: Uri, messageKey:String, receivedID:String, typeMess
             sendMessageAsFile(receivedID,it, messageKey, typeMessage)
         }
     }
+}
+
+ fun getFileFromStorage(mFile: File, fileUrl: String, function: () -> Unit) {
+    val path = REF_STORAGE_ROOT.storage.getReferenceFromUrl(fileUrl)
+    path.getFile(mFile).addOnSuccessListener { function() }.addOnFailureListener{ showToast(it.message.toString())}
 }

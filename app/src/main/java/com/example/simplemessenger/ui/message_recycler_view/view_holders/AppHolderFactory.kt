@@ -1,11 +1,10 @@
-package com.example.simplemessenger.ui.fragments.message_recycler_view.view_holders
+package com.example.simplemessenger.ui.message_recycler_view.view_holders
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplemessenger.R
-import com.example.simplemessenger.ui.fragments.message_recycler_view.views.MessageView
-import com.example.simplemessenger.utilits.TYPE_MESSAGE_IMAGE
+import com.example.simplemessenger.ui.message_recycler_view.views.MessageView
 
 class AppHolderFactory {
     companion object{

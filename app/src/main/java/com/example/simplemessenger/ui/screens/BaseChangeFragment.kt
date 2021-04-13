@@ -1,9 +1,7 @@
-package com.example.simplemessenger.ui.fragments
+package com.example.simplemessenger.ui.screens
 
-import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import com.example.simplemessenger.MainActivity
 import com.example.simplemessenger.R
 import com.example.simplemessenger.utilits.APP_ACTIVITY
 import com.example.simplemessenger.utilits.hideKeybord

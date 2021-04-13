@@ -1,8 +1,7 @@
-package com.example.simplemessenger.ui.fragments
+package com.example.simplemessenger.ui.screens
 
 import com.example.simplemessenger.R
 import com.example.simplemessenger.database.*
-import com.example.simplemessenger.utilits.*
 import kotlinx.android.synthetic.main.fragment_change_bio.*
 
 

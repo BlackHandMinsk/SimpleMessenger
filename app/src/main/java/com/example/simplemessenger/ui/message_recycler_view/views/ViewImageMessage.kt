@@ -1,6 +1,4 @@
-package com.example.simplemessenger.ui.fragments.message_recycler_view.views
-
-import android.widget.ImageView
+package com.example.simplemessenger.ui.message_recycler_view.views
 
 data class ViewImageMessage(override val id: String, override val from: String, override val timeStamp: String, override val fileUrl: String, override val text: String="")
     :MessageView {

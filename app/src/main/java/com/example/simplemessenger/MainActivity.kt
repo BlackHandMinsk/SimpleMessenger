@@ -10,8 +10,8 @@ import com.example.simplemessenger.database.initFirebase
 import com.example.simplemessenger.database.initUser
 
 import com.example.simplemessenger.databinding.ActivityMainBinding
-import com.example.simplemessenger.ui.fragments.MainFragment
-import com.example.simplemessenger.ui.fragments.register.EnterPhoneNumberFragment
+import com.example.simplemessenger.ui.screens.MainFragment
+import com.example.simplemessenger.ui.screens.register.EnterPhoneNumberFragment
 import com.example.simplemessenger.ui.objects.AppDrawer
 import com.example.simplemessenger.utilits.*
 import kotlinx.coroutines.CoroutineScope

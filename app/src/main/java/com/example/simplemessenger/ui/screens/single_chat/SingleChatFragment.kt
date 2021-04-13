@@ -1,4 +1,4 @@
-package com.example.simplemessenger.ui.fragments.single_chat
+package com.example.simplemessenger.ui.screens.single_chat
 
 import android.app.Activity
 import android.content.Intent
@@ -14,8 +14,8 @@ import com.example.simplemessenger.R
 import com.example.simplemessenger.database.*
 import com.example.simplemessenger.models.CommonModel
 import com.example.simplemessenger.models.UserModel
-import com.example.simplemessenger.ui.fragments.BaseFragment
-import com.example.simplemessenger.ui.fragments.message_recycler_view.views.AppViewFactory
+import com.example.simplemessenger.ui.screens.BaseFragment
+import com.example.simplemessenger.ui.message_recycler_view.views.AppViewFactory
 import com.example.simplemessenger.utilits.*
 import com.google.firebase.database.DatabaseReference
 import com.theartofdev.edmodo.cropper.CropImage
@@ -209,5 +209,6 @@ class SingleChatFragment(private val contact: CommonModel) : BaseFragment(R.layo
     override fun onDestroyView() {
         super.onDestroyView()
         mAppVoiceRecorder.releaseRecorder()
+        mAdapter.onDestroy()
     }
 }

@@ -9,6 +9,7 @@ data class CommonModel (
         var phone:String = "",
         var photoUrl:String = "empty",
         var fileUrl:String = "empty",
+        
 
 
 

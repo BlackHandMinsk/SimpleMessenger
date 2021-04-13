@@ -1,4 +1,4 @@
-package com.example.simplemessenger.ui.fragments
+package com.example.simplemessenger.ui.screens
 
 import com.example.simplemessenger.R
 import com.example.simplemessenger.database.*
