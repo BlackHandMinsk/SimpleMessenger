@@ -64,4 +64,6 @@ dependencies {
 
 // Add for NavController support
     implementation "com.mikepenz:materialdrawer-nav:7.0.0"
+
+    implementation 'androidx.browser:browser:1.3.0'
 }
