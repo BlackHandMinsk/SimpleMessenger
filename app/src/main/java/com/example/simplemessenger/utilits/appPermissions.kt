@@ -10,6 +10,7 @@ import java.util.jar.Manifest
 const val READ_CONTACTS = android.Manifest.permission.READ_CONTACTS
 const val RECORD_AUDIO = android.Manifest.permission.RECORD_AUDIO
 const val PERMISSION_REQUEST = 200
+const val WRITE_FILES = android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 
 
 fun checkPermission(permission: String):Boolean{
