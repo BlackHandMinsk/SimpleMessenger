@@ -15,6 +15,7 @@ import com.example.simplemessenger.models.CommonModel
 import com.example.simplemessenger.models.UserModel
 import com.example.simplemessenger.ui.screens.BaseFragment
 import com.example.simplemessenger.ui.message_recycler_view.views.AppViewFactory
+import com.example.simplemessenger.ui.screens.main_list.MainListFragment
 import com.example.simplemessenger.ui.screens.settings.ChangeNameFragment
 import com.example.simplemessenger.utilits.*
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -247,10 +248,17 @@ class SingleChatFragment(private val contact: CommonModel) : BaseFragment(R.layo
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.settings_menu_exit -> {
-
+        R.id.menu_clear_chat->clearChat(contact.id){
+        showToast("чат очищен")
+            replaceFragment(MainListFragment())
+                }
+            R.id.menu_delete_chat->deleteChat(contact.id){
+                showToast("чат удален")
+                replaceFragment(MainListFragment())
+            }
             }
             return true
         }
-    }
+
+
 }
