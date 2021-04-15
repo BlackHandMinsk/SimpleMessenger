@@ -39,6 +39,7 @@
             android:layout_marginStart="5dp"/>
 
         <TextView
+            android:maxLines="2"
             android:id="@+id/chat_received_filename"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -96,6 +97,7 @@
             android:layout_marginStart="5dp"/>
 
         <TextView
+            android:maxLines="2"
             android:id="@+id/chat_user_filename"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
