@@ -1,12 +1,13 @@
-package com.example.simplemessenger.ui.screens
+package com.example.simplemessenger.ui.screens.settings
 
 import com.example.simplemessenger.R
 import com.example.simplemessenger.database.*
+import com.example.simplemessenger.ui.screens.BaseChangeFragment
 import com.example.simplemessenger.utilits.*
 import kotlinx.android.synthetic.main.fragment_change_name.*
 
 
-class ChangeNameFragment :BaseChangeFragment(R.layout.fragment_change_name) {
+class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
 
   override fun onResume() {
     super.onResume()

@@ -1,7 +1,8 @@
-package com.example.simplemessenger.ui.screens
+package com.example.simplemessenger.ui.screens.settings
 
 import com.example.simplemessenger.R
 import com.example.simplemessenger.database.*
+import com.example.simplemessenger.ui.screens.BaseChangeFragment
 import kotlinx.android.synthetic.main.fragment_change_bio.*
 
 

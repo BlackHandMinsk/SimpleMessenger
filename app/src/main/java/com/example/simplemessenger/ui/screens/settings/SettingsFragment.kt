@@ -1,4 +1,4 @@
-package com.example.simplemessenger.ui.screens
+package com.example.simplemessenger.ui.screens.settings
 
 import android.app.Activity
 import android.content.Intent
@@ -7,6 +7,7 @@ import com.example.simplemessenger.R
 import com.example.simplemessenger.database.*
 
 import com.example.simplemessenger.databinding.FragmentSettingsBinding
+import com.example.simplemessenger.ui.screens.BaseFragment
 import com.example.simplemessenger.utilits.*
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView

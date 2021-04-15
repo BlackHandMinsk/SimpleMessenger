@@ -7,7 +7,7 @@ import android.widget.ImageView
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.simplemessenger.R
 import com.example.simplemessenger.ui.screens.ContactsFragment
-import com.example.simplemessenger.ui.screens.SettingsFragment
+import com.example.simplemessenger.ui.screens.settings.SettingsFragment
 import com.example.simplemessenger.utilits.APP_ACTIVITY
 import com.example.simplemessenger.database.USER
 import com.example.simplemessenger.utilits.downloadAndSetImage
