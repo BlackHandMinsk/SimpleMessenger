@@ -10,7 +10,7 @@ import com.example.simplemessenger.database.initFirebase
 import com.example.simplemessenger.database.initUser
 
 import com.example.simplemessenger.databinding.ActivityMainBinding
-import com.example.simplemessenger.ui.screens.MainFragment
+import com.example.simplemessenger.ui.screens.main_list.MainListFragment
 import com.example.simplemessenger.ui.screens.register.EnterPhoneNumberFragment
 import com.example.simplemessenger.ui.objects.AppDrawer
 import com.example.simplemessenger.utilits.*
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(mToolbar)
      if(AUTH.currentUser!=null) {
          mAppDrawer.create()
-         replaceFragment(MainFragment(),false)
+         replaceFragment(MainListFragment(),false)
      }else{
         replaceFragment(EnterPhoneNumberFragment(),false)
      }
