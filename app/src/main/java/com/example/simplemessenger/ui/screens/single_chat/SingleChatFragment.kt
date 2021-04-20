@@ -1,6 +1,5 @@
 package com.example.simplemessenger.ui.screens.single_chat
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.view.*
@@ -13,10 +12,9 @@ import com.example.simplemessenger.R
 import com.example.simplemessenger.database.*
 import com.example.simplemessenger.models.CommonModel
 import com.example.simplemessenger.models.UserModel
-import com.example.simplemessenger.ui.screens.BaseFragment
+import com.example.simplemessenger.ui.screens.base.BaseFragment
 import com.example.simplemessenger.ui.message_recycler_view.views.AppViewFactory
 import com.example.simplemessenger.ui.screens.main_list.MainListFragment
-import com.example.simplemessenger.ui.screens.settings.ChangeNameFragment
 import com.example.simplemessenger.utilits.*
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.database.DatabaseReference

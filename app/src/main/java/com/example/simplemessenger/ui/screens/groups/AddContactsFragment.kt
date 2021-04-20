@@ -1,6 +1,5 @@
-package com.example.simplemessenger.ui.screens.main_list
+package com.example.simplemessenger.ui.screens.groups
 
-import android.database.CursorIndexOutOfBoundsException
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplemessenger.R
@@ -10,14 +9,15 @@ import com.example.simplemessenger.models.CommonModel
 import com.example.simplemessenger.utilits.APP_ACTIVITY
 import com.example.simplemessenger.utilits.AppValueEventListener
 import com.example.simplemessenger.utilits.hideKeybord
+import kotlinx.android.synthetic.main.fragment_add_contacts.*
 import kotlinx.android.synthetic.main.fragment_main_list.*
 
 
-class MainListFragment : Fragment(R.layout.fragment_main_list) {
+class AddContactsFragment : Fragment(R.layout.fragment_add_contacts) {
 
 
     private lateinit var mRecyclerView: RecyclerView
-    private lateinit var mAdapter:MainListAdapter
+    private lateinit var mAdapter:AddContactsAdapter
     private val mRefMainList = REF_DATABASE_ROOT.child(NODE_MAIN_LIST).child(CURRENT_UID)
     private val mRefUsers = REF_DATABASE_ROOT.child(NODE_USERS)
     private val mRefMessages = REF_DATABASE_ROOT.child(NODE_MESSAGES).child(CURRENT_UID)
@@ -25,15 +25,20 @@ class MainListFragment : Fragment(R.layout.fragment_main_list) {
 
     override fun onResume() {
         super.onResume()
-        APP_ACTIVITY.title = "Simple messenger"
+        APP_ACTIVITY.title = "Добавить участников"
         APP_ACTIVITY.mAppDrawer.enableDrawer()
         hideKeybord()
         initRecycleView()
+        add_contacts_btn_next.setOnClickListener{
+            listContacts.forEach{
+                println(it.id)
+            }
+        }
     }
 
     private fun initRecycleView() {
-       mRecyclerView = main_list_recycle_view
-        mAdapter = MainListAdapter()
+       mRecyclerView = add_contacts_recycle_view
+        mAdapter = AddContactsAdapter()
                 /// 1 запрос
         mRefMainList.addListenerForSingleValueEvent(AppValueEventListener{
             mListItems = it.children.map { it.getCommonModel() }
@@ -59,5 +64,9 @@ class MainListFragment : Fragment(R.layout.fragment_main_list) {
             }
         })
         mRecyclerView.adapter = mAdapter
+    }
+
+    companion object{
+        val listContacts = mutableListOf<CommonModel>()
     }
 }

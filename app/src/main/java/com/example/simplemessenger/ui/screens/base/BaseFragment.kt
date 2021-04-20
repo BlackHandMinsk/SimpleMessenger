@@ -1,4 +1,4 @@
-package com.example.simplemessenger.ui.screens
+package com.example.simplemessenger.ui.screens.base
 
 import androidx.fragment.app.Fragment
 import com.example.simplemessenger.utilits.APP_ACTIVITY

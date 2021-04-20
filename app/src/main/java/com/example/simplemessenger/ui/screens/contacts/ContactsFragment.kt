@@ -1,4 +1,4 @@
-package com.example.simplemessenger.ui.screens
+package com.example.simplemessenger.ui.screens.contacts
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.simplemessenger.R
 import com.example.simplemessenger.database.*
 import com.example.simplemessenger.models.CommonModel
+import com.example.simplemessenger.ui.screens.base.BaseFragment
 import com.example.simplemessenger.ui.screens.single_chat.SingleChatFragment
 import com.example.simplemessenger.utilits.*
 import com.firebase.ui.database.FirebaseRecyclerAdapter
@@ -48,9 +49,9 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
             }
 
             override fun onBindViewHolder(
-                holder: ContactsHolder,
-                position: Int,
-                model: CommonModel
+                    holder: ContactsHolder,
+                    position: Int,
+                    model: CommonModel
             ) {
                 mRefUsers = REF_DATABASE_ROOT.child(NODE_USERS).child(model.id)
 
