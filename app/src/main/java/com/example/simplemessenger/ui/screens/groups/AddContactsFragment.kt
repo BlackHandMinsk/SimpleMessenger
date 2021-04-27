@@ -9,6 +9,7 @@ import com.example.simplemessenger.models.CommonModel
 import com.example.simplemessenger.utilits.APP_ACTIVITY
 import com.example.simplemessenger.utilits.AppValueEventListener
 import com.example.simplemessenger.utilits.hideKeybord
+import com.example.simplemessenger.utilits.replaceFragment
 import kotlinx.android.synthetic.main.fragment_add_contacts.*
 import kotlinx.android.synthetic.main.fragment_main_list.*
 
@@ -30,9 +31,7 @@ class AddContactsFragment : Fragment(R.layout.fragment_add_contacts) {
         hideKeybord()
         initRecycleView()
         add_contacts_btn_next.setOnClickListener{
-            listContacts.forEach{
-                println(it.id)
-            }
+           replaceFragment(CreateGroupFragment(listContacts))
         }
     }
 
