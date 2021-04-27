@@ -5,16 +5,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.simplemessenger.R
 import com.example.simplemessenger.database.*
 import com.example.simplemessenger.models.CommonModel
+import com.example.simplemessenger.ui.screens.base.BaseFragment
+import com.example.simplemessenger.utilits.*
 
-import com.example.simplemessenger.utilits.APP_ACTIVITY
-import com.example.simplemessenger.utilits.AppValueEventListener
-import com.example.simplemessenger.utilits.hideKeybord
-import com.example.simplemessenger.utilits.replaceFragment
 import kotlinx.android.synthetic.main.fragment_add_contacts.*
 import kotlinx.android.synthetic.main.fragment_main_list.*
 
 
-class AddContactsFragment : Fragment(R.layout.fragment_add_contacts) {
+class AddContactsFragment : BaseFragment(R.layout.fragment_add_contacts) {
 
 
     private lateinit var mRecyclerView: RecyclerView
@@ -25,13 +23,14 @@ class AddContactsFragment : Fragment(R.layout.fragment_add_contacts) {
     private var mListItems = listOf<CommonModel>()
 
     override fun onResume() {
+        listContacts.clear()
         super.onResume()
         APP_ACTIVITY.title = "Добавить участников"
-        APP_ACTIVITY.mAppDrawer.enableDrawer()
         hideKeybord()
         initRecycleView()
         add_contacts_btn_next.setOnClickListener{
-           replaceFragment(CreateGroupFragment(listContacts))
+            if(listContacts.isEmpty()) showToast("Добавьте участников")
+            else replaceFragment(CreateGroupFragment(listContacts))
         }
     }
 

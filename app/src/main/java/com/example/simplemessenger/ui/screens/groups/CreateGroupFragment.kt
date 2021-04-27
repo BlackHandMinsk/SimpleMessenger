@@ -16,13 +16,11 @@ class CreateGroupFragment(private var listContacts:List<CommonModel>):BaseFragme
     override fun onResume() {
         super.onResume()
         APP_ACTIVITY.title = "Создать группу"
-        APP_ACTIVITY.mAppDrawer.enableDrawer()
         hideKeybord()
         initRecycleView()
-        create_group_btn_complete.setOnClickListener{
-            showToast("ok")
-        }
+        create_group_btn_complete.setOnClickListener{ showToast("ok") }
         create_group_input_name.requestFocus()
+        create_group_counts.text = getPlurals(listContacts.size)
     }
 
     private fun initRecycleView() {
