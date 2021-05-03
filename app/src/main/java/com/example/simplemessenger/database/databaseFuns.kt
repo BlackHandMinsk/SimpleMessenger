@@ -5,6 +5,7 @@ import com.example.simplemessenger.models.CommonModel
 import com.example.simplemessenger.models.UserModel
 import com.example.simplemessenger.utilits.APP_ACTIVITY
 import com.example.simplemessenger.utilits.AppValueEventListener
+import com.example.simplemessenger.utilits.TYPE_GROUP
 import com.example.simplemessenger.utilits.showToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -217,23 +218,47 @@ val keyGroup = REF_DATABASE_ROOT.child(NODE_GROUPS).push().key.toString()
     val mapData = hashMapOf<String,Any>()
     mapData[CHILD_ID] = keyGroup
     mapData[CHILD_FULLNAME] = nameGroup
+    mapData[CHILD_PHOTO_URL] = "empty"
     val mapMembers = hashMapOf<String,Any>()
     listContacts.forEach{
         mapMembers[it.id] = USER_MEMBER
     }
     mapMembers[CURRENT_UID] = USER_CREATOR
     mapData[NODE_MEMBERS] = mapMembers
+
     path.updateChildren(mapData)
-        .addOnSuccessListener { function()
+        .addOnSuccessListener {
             if(uri != Uri.EMPTY){
                 putFileToStorage(uri, pathStorage) {
                     getUrlFromStorage(pathStorage) {
-                        path.child(CHILD_FILE_URL).setValue(it)
+                        path.child(CHILD_PHOTO_URL).setValue(it)
+                        addGroupToMainList(mapData, listContacts) {
+                            function()
+                        }
                     }
+                }
+            }else {
+                addGroupToMainList(mapData, listContacts) {
+                    function()
                 }
             }
         }
-        .addOnFailureListener { showToast("Есть проблеммы") }
+        .addOnFailureListener { showToast("Есть проблемы") }
 
 
+}
+
+fun addGroupToMainList(mapData: HashMap<String, Any>, listContacts: List<CommonModel>, function: () -> Unit) {
+    val path = REF_DATABASE_ROOT.child(NODE_MAIN_LIST)
+    val map = hashMapOf<String,Any>()
+
+    map[CHILD_ID] = mapData[CHILD_ID].toString()
+    map[CHILD_TYPE] = TYPE_GROUP
+    listContacts.forEach {
+        path.child(it.id).child(map[CHILD_ID].toString()).updateChildren(map)
+    }
+
+    path.child(CURRENT_UID).child(map[CHILD_ID].toString()).updateChildren(map)
+            .addOnSuccessListener { function() }
+            .addOnFailureListener { showToast(it.message.toString()) }
 }
