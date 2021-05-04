@@ -7,7 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simplemessenger.R
 import com.example.simplemessenger.models.CommonModel
+import com.example.simplemessenger.ui.screens.groups.GroupChatFragment
 import com.example.simplemessenger.ui.screens.single_chat.SingleChatFragment
+import com.example.simplemessenger.utilits.TYPE_CHAT
+import com.example.simplemessenger.utilits.TYPE_GROUP
 import com.example.simplemessenger.utilits.downloadAndSetImage
 import com.example.simplemessenger.utilits.replaceFragment
 import de.hdodenhof.circleimageview.CircleImageView
@@ -28,7 +31,10 @@ class MainListAdapter:RecyclerView.Adapter<MainListAdapter.MainListHolder>() {
 
         val holder = MainListHolder(view)
         holder.itemView.setOnClickListener{
-            replaceFragment(SingleChatFragment(listItems[holder.adapterPosition]))
+            when(listItems[holder.adapterPosition].type){
+                TYPE_CHAT-> replaceFragment(SingleChatFragment(listItems[holder.adapterPosition]))
+                TYPE_GROUP-> replaceFragment(GroupChatFragment(listItems[holder.adapterPosition]))
+            }
         }
         return holder
 
